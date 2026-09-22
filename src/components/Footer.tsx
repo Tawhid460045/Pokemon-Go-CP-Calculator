@@ -15,6 +15,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         {/* Footer navigation */}
         <div className="flex flex-wrap justify-center gap-6 mb-8 text-lg">
+          <Link href="/purify-calculator" className="hover:text-primary transition-colors">Purify Calculator</Link>
           <Link href="/tools" className="hover:text-primary transition-colors">Tools</Link>
           <Link href="/guide" className="hover:text-primary transition-colors">Guide</Link>
           <Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link>
@@ -25,12 +26,12 @@ const Footer = () => {
           <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
           <Link href="/disclaimer" className="hover:text-primary transition-colors">Disclaimer</Link>
         </div>
-        
+
         {/* Disclaimer text */}
         <div className="text-center text-muted-foreground text-sm max-w-4xl mx-auto">
           <p className="mb-6">
-            Pokémon is Copyright Gamefreak, Nintendo, and The Pokémon Company 2001-2018. All images and names owned and trademarked by Gamefreak, 
-            Nintendo, The Pokémon Company, and Niantic are property of their respective owners. This tool is not affiliated with pokemon parent company. 
+            Pokémon is Copyright Gamefreak, Nintendo, and The Pokémon Company 2001-2026. All images and names owned and trademarked by Gamefreak,
+            Nintendo, The Pokémon Company, and Niantic are property of their respective owners. This tool is not affiliated with pokemon parent company.
             This tool is only used for educational purposes.
           </p>
           <p className="text-xs">© 2026 - Pokemon Go CP Calculator</p>

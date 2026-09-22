@@ -1,99 +1,97 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import type { Metadata } from "next";
+import Link from "next/link";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
-import { Calendar, Clock, User } from "lucide-react";
+import { buildMetadata } from "@/lib/seo";
+import { Clock, User } from "lucide-react";
 
-const Blog = () => {
-  const publishedPosts = [
-    {
-      title: "Tips for Optimal Pokemon Evolution in Pokemon GO",
-      excerpt: "Master Pokemon evolution strategies in Pokemon GO with our comprehensive guide. Learn the best techniques to maximize CP gains, timing, and resource efficiency for optimal evolution results.",
-      readTime: "8 min read",
-      category: "Strategy",
-      date: "September 6, 2025",
-      slug: "/tips-for-optimal-pokemon-evolution"
-    },
-    {
-      title: "Understanding Shadow Pokemon Mechanics",
-      excerpt: "Complete guide to Shadow Pokemon mechanics in Pokemon GO. Learn about damage bonuses, purification benefits, and strategic decisions for competitive play.",
-      readTime: "10 min read",
-      category: "Strategy", 
-      date: "September 6, 2025",
-      slug: "/understanding-shadow-pokemon-mechanics"
-    },
-    {
-      title: "Best Pokemon to Purify Guide",
-      excerpt: "Discover which Shadow Pokemon are worth purifying and which should stay shadow. Complete analysis with CP calculations, meta relevance, and resource optimization.",
-      readTime: "7 min read",
-      category: "Strategy",
-      date: "September 6, 2025", 
-      slug: "/best-pokemon-to-purify"
-    }
-  ];
+export const metadata: Metadata = buildMetadata({
+  title: "Blog",
+  description: "Pokemon Go strategy guides: Shadow Pokemon mechanics, purification decisions, and evolution tips.",
+  path: "/blog",
+  keywords: "Pokemon Go blog, Pokemon GO strategy, shadow Pokemon guide, purification guide",
+});
 
-  const comingSoonPosts = [
-    {
-      title: "Pokemon GO PvP IV Guide: Finding Perfect League Pokemon",
-      excerpt: "Master the art of IV optimization for Great League and Ultra League competitions, including rank calculations and breakpoint analysis.",
-      readTime: "12 min read",
-      category: "PvP",
-      date: "Coming Soon"
-    },
-    {
-      title: "September 2025 Pokemon Update: Complete Analysis", 
-      excerpt: "Comprehensive breakdown of all new Pokemon added in 2025, including Paldean Tauros variants, Kingambit, and Gigantamax forms.",
-      readTime: "10 min read",
-      category: "Updates",
-      date: "Coming Soon"
-    },
-    {
-      title: "Raid Counters Guide: Building the Perfect Team",
-      excerpt: "Data-driven approach to selecting optimal raid counters, understanding type effectiveness, and maximizing damage output.",
-      readTime: "15 min read",
-      category: "Raids", 
-      date: "Coming Soon"
-    }
-  ];
+const publishedPosts = [
+  {
+    title: "Tips for Optimal Pokemon Evolution in Pokemon GO",
+    excerpt:
+      "Evolution strategies for Pokemon GO: IV analysis before evolving, timing evolutions around events, and efficient resource management.",
+    readTime: "8 min read",
+    category: "Strategy",
+    date: "September 6, 2025",
+    slug: "/tips-for-optimal-pokemon-evolution",
+  },
+  {
+    title: "Understanding Shadow Pokemon Mechanics",
+    excerpt: "A complete guide to Shadow Pokemon mechanics in Pokemon GO: damage multipliers, purification benefits, and strategic decisions.",
+    readTime: "10 min read",
+    category: "Strategy",
+    date: "September 6, 2025",
+    slug: "/understanding-shadow-pokemon-mechanics",
+  },
+  {
+    title: "Best Pokemon to Purify Guide",
+    excerpt: "Which Shadow Pokemon are worth purifying and which should stay Shadow, with a full decision framework.",
+    readTime: "7 min read",
+    category: "Strategy",
+    date: "September 6, 2025",
+    slug: "/best-pokemon-to-purify",
+  },
+];
 
+const comingSoonPosts = [
+  {
+    title: "Pokemon GO PvP IV Guide: Finding Perfect League Pokemon",
+    excerpt: "IV optimization for Great League and Ultra League, including rank calculations and breakpoint analysis.",
+    readTime: "12 min read",
+    category: "PvP",
+    date: "Coming Soon",
+  },
+  {
+    title: "Mega Evolution Roster: What's Actually Live in Pokemon GO",
+    excerpt: "A full, verified list of every Mega Evolution and Gigantamax form currently released - and what's still missing from most calculators.",
+    readTime: "6 min read",
+    category: "Updates",
+    date: "Coming Soon",
+  },
+  {
+    title: "Raid Counters Guide: Building the Perfect Team",
+    excerpt: "A data-driven approach to selecting raid counters, type effectiveness, and maximizing damage output.",
+    readTime: "15 min read",
+    category: "Raids",
+    date: "Coming Soon",
+  },
+];
+
+export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
-      <SEO 
-        title="Pokemon Go Blog | Strategy Guides & Tips for Trainers"
-        description="Expert Pokemon Go guides, strategy tips, and analysis. Learn about shadow Pokemon, PvP optimization, raid strategies, and efficient resource management."
-        canonical="https://pokemongocpcalculator.com/blog"
-        keywords="Pokemon Go blog, Pokemon GO strategy, shadow Pokemon guide, PvP tips, raid guides, trainer tips"
-        type="website"
-      />
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="relative bg-white dark:bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
           <div className="mb-4">
-            <Link to="/" className="text-primary hover:underline">← Back to Calculator</Link>
-          </div>
-          
-          <h1 className="text-3xl font-bold mb-6">Pokemon Go Blog</h1>
-          
-          <div className="prose dark:prose-invert max-w-none mb-8">
-            <p>Welcome to our Pokemon Go blog! Here you'll find expert guides, strategy tips, and in-depth analysis to help you become a better trainer. Our content covers everything from shadow Pokemon optimization to PvP strategies and raid preparation.</p>
+            <Link href="/" className="text-primary hover:underline">← Back to Calculator</Link>
           </div>
 
-          {/* Published Posts */}
+          <h1 className="text-3xl font-bold mb-6">Pokemon Go Blog</h1>
+
+          <div className="prose dark:prose-invert max-w-none mb-8">
+            <p>Guides and strategy notes covering Shadow Pokemon, purification decisions, and evolution planning.</p>
+          </div>
+
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-6">Latest Blog Posts</h2>
             <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
-              {publishedPosts.map((post, index) => (
-                <Link key={index} to={post.slug} className="group">
+              {publishedPosts.map((post) => (
+                <Link key={post.slug} href={post.slug} className="group">
                   <div className="border border-border rounded-lg p-6 hover:shadow-md transition-all duration-200 hover:border-primary/50">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                        {post.category}
-                      </span>
+                      <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">{post.category}</span>
                       <span className="text-xs text-muted-foreground">{post.date}</span>
                     </div>
-                    
+
                     <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
                     <p className="text-sm text-muted-foreground mb-4">{post.excerpt}</p>
-                    
+
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
@@ -113,22 +111,19 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Upcoming Posts */}
           <div className="mb-8">
             <h3 className="text-xl font-bold mb-6">Coming Soon</h3>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {comingSoonPosts.map((post, index) => (
-                <div key={index} className="border border-border rounded-lg p-6 hover:shadow-md transition-shadow opacity-75">
+              {comingSoonPosts.map((post) => (
+                <div key={post.title} className="border border-border rounded-lg p-6 hover:shadow-md transition-shadow opacity-75">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2 py-1 bg-secondary/50 text-muted-foreground text-xs font-medium rounded">
-                      {post.category}
-                    </span>
+                    <span className="px-2 py-1 bg-secondary/50 text-muted-foreground text-xs font-medium rounded">{post.category}</span>
                     <span className="text-xs text-muted-foreground">{post.date}</span>
                   </div>
-                  
+
                   <h4 className="text-lg font-bold mb-3 text-muted-foreground">{post.title}</h4>
                   <p className="text-sm text-muted-foreground mb-4">{post.excerpt}</p>
-                  
+
                   <div className="flex items-center text-xs text-muted-foreground">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
@@ -146,7 +141,6 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Categories Preview */}
           <div className="border-t border-border pt-8">
             <h3 className="text-xl font-bold mb-4">Blog Categories</h3>
             <div className="grid gap-4 md:grid-cols-3">
@@ -165,25 +159,20 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Newsletter Signup Placeholder */}
           <div className="mt-8 bg-secondary/30 rounded-lg p-6 text-center">
             <h3 className="text-lg font-bold mb-2">Stay Updated</h3>
             <p className="text-muted-foreground mb-4">
-              Be the first to know when we publish new guides and strategy posts. Bookmark this page and check back regularly!
+              Be the first to know when we publish new guides - bookmark this page and check back, or see the{" "}
+              <Link href="/updates" className="text-primary hover:underline">changelog</Link>.
             </p>
-            <Link 
-              to="/contact" 
-              className="inline-flex items-center text-primary hover:underline font-medium"
-            >
+            <Link href="/contact" className="inline-flex items-center text-primary hover:underline font-medium">
               Contact us for suggestions →
             </Link>
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
-};
-
-export default Blog;
+}

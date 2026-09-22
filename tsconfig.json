@@ -40,7 +40,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/_legacy_pages"
+    "node_modules"
   ]
 }

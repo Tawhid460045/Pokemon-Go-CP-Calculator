@@ -8,7 +8,11 @@ import { Info } from "lucide-react";
 import CalculatorResult from "./CalculatorResult";
 import { cn } from "@/lib/utils";
 
-const CalculatorForm: React.FC = () => {
+interface CalculatorFormProps {
+  defaultShadowOnly?: boolean;
+}
+
+const CalculatorForm: React.FC<CalculatorFormProps> = ({ defaultShadowOnly = false }) => {
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const [attackIV, setAttackIV] = useState<number>(15);
   const [defenseIV, setDefenseIV] = useState<number>(15);
@@ -113,9 +117,10 @@ const CalculatorForm: React.FC = () => {
               Select your Pokémon from the dropdown. You can search by typing the name.
             </Tooltip>
           </div>
-          <PokemonSelect 
-            value={selectedPokemon} 
-            onChange={setSelectedPokemon} 
+          <PokemonSelect
+            value={selectedPokemon}
+            onChange={setSelectedPokemon}
+            defaultShadowOnly={defaultShadowOnly}
           />
         </div>
 

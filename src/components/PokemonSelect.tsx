@@ -10,12 +10,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
 interface PokemonSelectProps {
   value: Pokemon | null;
   onChange: (pokemon: Pokemon) => void;
+  defaultShadowOnly?: boolean;
 }
 
-const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
+const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange, defaultShadowOnly = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [shadowOnly, setShadowOnly] = useState(false);
+  const [shadowOnly, setShadowOnly] = useState(defaultShadowOnly);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
