@@ -34,12 +34,12 @@ export type { Pokemon };
 
 /**
  * Looks up a Shadow Pokémon's normal-form base stats. Shadow entry IDs are
- * always (normal dex number * 100) + 01, e.g. Shadow Dialga (id 48301) maps
- * to Dialga (dex 483). Returns undefined if the Pokémon isn't Shadow or its
- * normal form isn't in the dataset.
+ * always 1,000,000 + the normal form's national dex number, e.g. Shadow
+ * Dialga (id 1000483) maps to Dialga (dex 483). Returns undefined if the
+ * Pokémon isn't Shadow or its normal form isn't in the dataset.
  */
 export function getNormalFormForShadow(pokemon: Pokemon): Pokemon | undefined {
   if (!pokemon.isShadow) return undefined;
-  const normalDexId = Math.floor(pokemon.id / 100);
+  const normalDexId = pokemon.id - 1000000;
   return pokemonList.find((p) => p.id === normalDexId && !p.isShadow);
 }

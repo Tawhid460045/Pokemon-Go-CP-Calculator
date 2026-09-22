@@ -18,17 +18,17 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = "Pokemon Go CP Calculator - Calculate Evolution & Purify CP | Updated September 2025",
-  description = "Free Pokemon Go CP Calculator with all Pokemon updated September 2025. Calculate evolution CP, purify shadow Pokemon, and optimize IV stats. Includes Paldean Tauros, Kingambit, Dynamax forms & more!",
+  title = "Pokemon GO CP Calculator - See CP, IVs & Purified Stats Instantly",
+  description = "Calculate your Pokemon's CP instantly, check its IV quality, and see exactly what it becomes after purifying a Shadow Pokemon. Free, accurate, and built on the official in-game CP formula.",
   canonical = "https://pokemongocpcalculator.com",
   image = "/og-image.png",
   type = "website",
-  keywords = "Pokemon Go, CP Calculator, Purify Calculator, Shadow Pokemon, Evolution CP, Pokemon GO calculator, September 2025, Paldean Tauros, Kingambit, Dynamax",
+  keywords = "Pokemon Go CP calculator, purify calculator, shadow Pokemon calculator, IV calculator, CP formula",
   article
 }) => {
   const siteUrl = "https://pokemongocpcalculator.com";
   const fullImageUrl = `${siteUrl}${image}`;
-  
+
   // Enhanced structured data
   const structuredData = {
     "@context": "https://schema.org",
@@ -45,17 +45,10 @@ const SEO: React.FC<SEOProps> = ({
       "price": "0",
       "priceCurrency": "USD"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250"
-    },
     "author": {
       "@type": "Organization",
       "name": "Pokemon Go CP Calculator Team"
-    },
-    "dateModified": "2025-09-01",
-    "datePublished": "2024-01-01"
+    }
   };
 
   // Add FAQ structured data for calculator pages
@@ -68,23 +61,23 @@ const SEO: React.FC<SEOProps> = ({
         "name": "How accurate is the Pokemon Go CP calculator?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our CP calculator uses the official Pokemon GO CP formula and is updated with all Pokemon through September 2025, ensuring 99%+ accuracy."
-        }
-      },
-      {
-        "@type": "Question", 
-        "name": "Can I calculate CP for shadow and purified Pokemon?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Our calculator supports both shadow Pokemon and purification calculations, showing the exact CP changes when purifying."
+          "text": "Our CP calculator uses the same CP formula the game itself uses (base stats, IVs, and the level's CP multiplier), so results match in-game CP exactly, aside from rare rounding edge cases."
         }
       },
       {
         "@type": "Question",
-        "name": "Is the calculator updated with new Pokemon releases?",
+        "name": "Can I calculate CP for shadow and purified Pokemon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we regularly update our database. The latest update in September 2025 includes all new Pokemon like Paldean Tauros, Kingambit, and Dynamax forms."
+          "text": "Yes. Selecting a Shadow Pokemon shows a side-by-side comparison of its current CP and its CP after purification, based on the real purify mechanic: each IV increases by 2 (capped at 15) and its level stays the same."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the calculator's Pokemon database kept current?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the database is reviewed and updated as new Pokemon, forms, and Shadow releases are added to Pokemon GO."
         }
       }
     ]
