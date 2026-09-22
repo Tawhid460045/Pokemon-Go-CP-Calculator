@@ -1,0 +1,11 @@
+name = "pokemon-go-cp-calculator"
+compatibility_date = "2026-09-21"
+
+# This site is a fully static export (see next.config.mjs's output:"export").
+# Telling wrangler to deploy the built "out" folder as static assets - with
+# no "main" worker script - makes it a pure static-asset deployment: no
+# server runtime, no OpenNext build, just the prebuilt HTML/CSS/JS served
+# directly from Cloudflare's CDN.
+[assets]
+directory = "out"
+not_found_handling = "404-page"
