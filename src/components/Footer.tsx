@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -15,15 +15,15 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         {/* Footer navigation */}
         <div className="flex flex-wrap justify-center gap-6 mb-8 text-lg">
-          <Link to="/tools" className="hover:text-primary transition-colors">Tools</Link>
-          <Link to="/guide" className="hover:text-primary transition-colors">Guide</Link>
-          <Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link>
-          <Link to="/updates" className="hover:text-primary transition-colors">Updates</Link>
-          <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
-          <Link to="/about" className="hover:text-primary transition-colors">About Us</Link>
-          <Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link>
-          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-          <Link to="/disclaimer" className="hover:text-primary transition-colors">Disclaimer</Link>
+          <Link href="/tools" className="hover:text-primary transition-colors">Tools</Link>
+          <Link href="/guide" className="hover:text-primary transition-colors">Guide</Link>
+          <Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link>
+          <Link href="/updates" className="hover:text-primary transition-colors">Updates</Link>
+          <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
+          <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
+          <Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link>
+          <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+          <Link href="/disclaimer" className="hover:text-primary transition-colors">Disclaimer</Link>
         </div>
         
         {/* Disclaimer text */}

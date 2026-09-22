@@ -1,10 +1,11 @@
+"use client";
 
 import React from "react";
 import { Pokemon } from "@/lib/pokemonData";
 import { PurifiedStatsResult } from "@/lib/cpCalculator";
 import { ArrowUpCircle, ArrowRight, Sparkles, Star, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface CalculatorResultProps {
   cp: number;
@@ -184,11 +185,11 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
               <p className="text-xs text-muted-foreground text-center">
                 Purifying costs Stardust and Candy but permanently removes the Frustration-only moveset restriction, and
                 the resulting Pokémon keeps its level. Learn more in our{" "}
-                <Link to="/understanding-shadow-pokemon-mechanics" className="text-primary hover:underline">
+                <Link href="/understanding-shadow-pokemon-mechanics" className="text-primary hover:underline">
                   Shadow Pokémon mechanics guide
                 </Link>{" "}
                 and see which Shadows are{" "}
-                <Link to="/best-pokemon-to-purify" className="text-primary hover:underline">
+                <Link href="/best-pokemon-to-purify" className="text-primary hover:underline">
                   worth purifying
                 </Link>.
               </p>
