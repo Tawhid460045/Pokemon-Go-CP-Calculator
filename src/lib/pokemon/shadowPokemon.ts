@@ -10,7 +10,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 211,
     baseStamina: 205,
     types: ["Steel", "Dragon"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
+    isShadow: true
   },
   {
     id: 28701,
@@ -19,7 +20,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 92,
     baseStamina: 155,
     types: ["Normal"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/287.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/287.png",
+    isShadow: true
   },
   {
     id: 68601,
@@ -28,7 +30,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 95,
     baseStamina: 142,
     types: ["Dark", "Psychic"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/686.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/686.png",
+    isShadow: true
   },
   {
     id: 69601,
@@ -37,7 +40,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 123,
     baseStamina: 151,
     types: ["Rock", "Dragon"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/696.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/696.png",
+    isShadow: true
   },
   {
     id: 69801,
@@ -46,7 +50,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 109,
     baseStamina: 184,
     types: ["Rock", "Ice"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/698.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/698.png",
+    isShadow: true
   },
 
   // Shadow Gible evolution line (May 2025) - Shiny released
@@ -57,7 +62,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 84,
     baseStamina: 151,
     types: ["Dragon", "Ground"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/443.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/443.png",
+    isShadow: true
   },
   {
     id: 44401,
@@ -66,7 +72,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 125,
     baseStamina: 169,
     types: ["Dragon", "Ground"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/444.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/444.png",
+    isShadow: true
   },
   {
     id: 44501,
@@ -75,7 +82,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 193,
     baseStamina: 239,
     types: ["Dragon", "Ground"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png",
+    isShadow: true
   },
 
   // Shadow Horsea evolution line (May 2025) - Shiny released
@@ -86,7 +94,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 103,
     baseStamina: 102,
     types: ["Water"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png",
+    isShadow: true
   },
   {
     id: 11701,
@@ -95,7 +104,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 156,
     baseStamina: 146,
     types: ["Water"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
+    isShadow: true
   },
   {
     id: 23001,
@@ -104,7 +114,8 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 194,
     baseStamina: 181,
     types: ["Water", "Dragon"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png",
+    isShadow: true
   },
 
   // Shadow Kyogre (August 2025) - Shiny released
@@ -115,6 +126,7 @@ export const shadowPokemon: Pokemon[] = [
     baseDefense: 228,
     baseStamina: 205,
     types: ["Water"],
-    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png"
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png",
+    isShadow: true
   }
 ];

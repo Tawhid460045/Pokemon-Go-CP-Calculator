@@ -9,14 +9,11 @@ import { gen6Pokemon } from "./pokemon/gen6";
 import { gen7Pokemon } from "./pokemon/gen7";
 import { gen8Pokemon } from "./pokemon/gen8";
 import { gen9Pokemon } from "./pokemon/gen9";
-import { newGen8Pokemon } from "./pokemon/newGen8";
 import { newGen9Pokemon } from "./pokemon/newGen9";
 import { variantPokemon } from "./pokemon/variants";
 import { shadowPokemon } from "./pokemon/shadowPokemon";
-import { mythicalPokemon } from "./pokemon/mythicalPokemon";
 
 // This is a complete list of all Pokémon available in Pokémon GO
-// Updated September 2025 with new additions after March 2025
 export const pokemonList: Pokemon[] = [
   ...gen1Pokemon,
   ...gen2Pokemon,
@@ -27,12 +24,22 @@ export const pokemonList: Pokemon[] = [
   ...gen7Pokemon,
   ...gen8Pokemon,
   ...gen9Pokemon,
-  ...newGen8Pokemon,
   ...newGen9Pokemon,
   ...variantPokemon,
   ...shadowPokemon,
-  ...mythicalPokemon,
 ];
 
 // Re-export the Pokemon interface
 export type { Pokemon };
+
+/**
+ * Looks up a Shadow Pokémon's normal-form base stats. Shadow entry IDs are
+ * always (normal dex number * 100) + 01, e.g. Shadow Dialga (id 48301) maps
+ * to Dialga (dex 483). Returns undefined if the Pokémon isn't Shadow or its
+ * normal form isn't in the dataset.
+ */
+export function getNormalFormForShadow(pokemon: Pokemon): Pokemon | undefined {
+  if (!pokemon.isShadow) return undefined;
+  const normalDexId = Math.floor(pokemon.id / 100);
+  return pokemonList.find((p) => p.id === normalDexId && !p.isShadow);
+}

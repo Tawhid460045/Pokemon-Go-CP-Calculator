@@ -295,7 +295,7 @@ export const gen8Pokemon: Pokemon[] = [
     id: 842,
     name: "Appletun",
     baseAttack: 178,
-    baseDefense: 163,
+    baseDefense: 146,
     baseStamina: 242,
     types: ["Grass", "Dragon"],
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/842.png",

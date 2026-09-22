@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { Check, ChevronDown, Search } from "lucide-react";
+import { Check, ChevronDown, Search, Sparkles } from "lucide-react";
 import { Pokemon, pokemonList } from "@/lib/pokemonData";
 import { cn } from "@/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
@@ -14,6 +14,7 @@ interface PokemonSelectProps {
 const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [shadowOnly, setShadowOnly] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -22,11 +23,12 @@ const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
   // Memoize filtered Pokemon to avoid re-filtering on each render
   const filteredPokemon = useMemo(() => {
     const lowercaseSearch = searchTerm.toLowerCase();
-    return pokemonList.filter(pokemon => 
+    const bySearch = pokemonList.filter(pokemon =>
       pokemon.name.toLowerCase().includes(lowercaseSearch) ||
       pokemon.id.toString().includes(searchTerm)
     );
-  }, [searchTerm]);
+    return shadowOnly ? bySearch.filter(pokemon => pokemon.isShadow) : bySearch;
+  }, [searchTerm, shadowOnly]);
 
   // Setup virtualization for the dropdown items
   const rowVirtualizer = useVirtualizer({
@@ -95,7 +97,7 @@ const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
       
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 overflow-hidden rounded-lg md:rounded-xl border border-border bg-white dark:bg-card shadow-lg animate-fade-in">
-          <div className="p-2 border-b border-border">
+          <div className="p-2 border-b border-border space-y-2">
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <input
@@ -107,6 +109,19 @@ const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
                 className="w-full rounded-md border-0 py-2 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/30 focus:outline-none"
               />
             </div>
+            <button
+              type="button"
+              onClick={() => setShadowOnly((prev) => !prev)}
+              className={cn(
+                "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-colors",
+                shadowOnly
+                  ? "bg-purple-500 text-white border-purple-500"
+                  : "bg-transparent text-muted-foreground border-border hover:border-purple-400 hover:text-purple-500"
+              )}
+            >
+              <Sparkles className="h-3 w-3" />
+              Shadow Pokémon only
+            </button>
           </div>
           
           <div 
@@ -149,15 +164,18 @@ const PokemonSelect: React.FC<PokemonSelectProps> = ({ value, onChange }) => {
                         transform: `translateY(${virtualItem.start}px)`,
                       }}
                     >
-                      <img 
-                        src={pokemon.imageUrl} 
-                        alt={pokemon.name} 
+                      <img
+                        src={pokemon.imageUrl}
+                        alt={pokemon.name}
                         className="w-5 h-5 md:w-6 md:h-6 object-contain"
                         loading="lazy"
                         width="24"
                         height="24"
                       />
                       <span className="flex-grow truncate">{pokemon.name}</span>
+                      {pokemon.isShadow && (
+                        <Sparkles className="w-3.5 h-3.5 text-purple-500 shrink-0" aria-label="Shadow Pokémon" />
+                      )}
                       {value?.id === pokemon.id && <Check className="w-4 h-4 text-accent shrink-0" />}
                     </div>
                   );

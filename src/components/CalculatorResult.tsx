@@ -1,8 +1,10 @@
 
 import React from "react";
 import { Pokemon } from "@/lib/pokemonData";
-import { ArrowUpCircle, Star, TrendingUp } from "lucide-react";
+import { PurifiedStatsResult } from "@/lib/cpCalculator";
+import { ArrowUpCircle, ArrowRight, Sparkles, Star, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface CalculatorResultProps {
   cp: number;
@@ -12,6 +14,8 @@ interface CalculatorResultProps {
   attackIV: number;
   defenseIV: number;
   staminaIV: number;
+  purified?: PurifiedStatsResult | null;
+  normalForm?: Pokemon | null;
 }
 
 const CalculatorResult: React.FC<CalculatorResultProps> = ({
@@ -21,7 +25,9 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
   level,
   attackIV,
   defenseIV,
-  staminaIV
+  staminaIV,
+  purified,
+  normalForm
 }) => {
   // Determine quality tier based on IV percentage
   const getQualityTier = () => {
@@ -35,6 +41,7 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
   const qualityTier = getQualityTier();
 
   return (
+    <>
     <div className="mt-8 rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
       <div className="bg-primary/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -131,11 +138,69 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
             </div>
           </div>
           <div className="mt-4 text-xs text-muted-foreground text-center">
-            Base stats sourced from <a href="https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_in_Pok%C3%A9mon_GO" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Bulbapedia</a>. Last updated September 2025.
+            Base stats sourced from <a href="https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_in_Pok%C3%A9mon_GO" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Bulbapedia</a>.
           </div>
         </div>
       </div>
     </div>
+
+      {pokemon.isShadow && (
+        <div className="mt-4 rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
+          <div className="bg-purple-500/10 px-6 py-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-purple-500" />
+            <h3 className="font-semibold">After Purification</h3>
+          </div>
+
+          {purified && normalForm ? (
+            <div className="p-6">
+              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 mb-6">
+                <div className="text-center">
+                  <img src={pokemon.imageUrl} alt={pokemon.name} className="w-14 h-14 object-contain mx-auto mb-1" />
+                  <div className="text-xs text-muted-foreground mb-0.5">Shadow (now)</div>
+                  <div className="text-2xl font-bold">{cp}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {attackIV}/{defenseIV}/{staminaIV} IV &middot; {ivPercentage}%
+                  </div>
+                </div>
+                <ArrowRight className="h-5 w-5 text-muted-foreground shrink-0" />
+                <div className="text-center">
+                  <img src={normalForm.imageUrl} alt={normalForm.name} className="w-14 h-14 object-contain mx-auto mb-1" />
+                  <div className="text-xs text-muted-foreground mb-0.5">Purified</div>
+                  <div className="text-2xl font-bold text-purple-500">{purified.cp}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {purified.attackIV}/{purified.defenseIV}/{purified.staminaIV} IV &middot; {purified.ivPercentage}%
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-lg bg-secondary/50 px-4 py-3 text-sm text-center mb-4">
+                CP change:{" "}
+                <span className={cn("font-semibold", purified.cp >= cp ? "text-green-600 dark:text-green-400" : "text-muted-foreground")}>
+                  {purified.cp >= cp ? "+" : ""}{purified.cp - cp}
+                </span>{" "}
+                &middot; becomes <span className="font-medium">{normalForm.name}</span>'s base stats with each IV raised by 2 (capped at 15)
+              </div>
+
+              <p className="text-xs text-muted-foreground text-center">
+                Purifying costs Stardust and Candy but permanently removes the Frustration-only moveset restriction, and
+                the resulting Pokémon keeps its level. Learn more in our{" "}
+                <Link to="/understanding-shadow-pokemon-mechanics" className="text-primary hover:underline">
+                  Shadow Pokémon mechanics guide
+                </Link>{" "}
+                and see which Shadows are{" "}
+                <Link to="/best-pokemon-to-purify" className="text-primary hover:underline">
+                  worth purifying
+                </Link>.
+              </p>
+            </div>
+          ) : (
+            <div className="p-6 text-sm text-muted-foreground text-center">
+              We don't have this Shadow Pokémon's normal form in our database yet, so we can't show a purified comparison for it.
+            </div>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

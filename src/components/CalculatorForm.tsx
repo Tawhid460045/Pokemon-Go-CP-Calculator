@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-import { Pokemon } from "@/lib/pokemonData";
-import { calculateCP, calculateIVPercentage } from "@/lib/cpCalculator";
+import { Pokemon, getNormalFormForShadow } from "@/lib/pokemonData";
+import { calculateCP, calculateIVPercentage, calculatePurifiedStats, PurifiedStatsResult } from "@/lib/cpCalculator";
 import PokemonSelect from "./PokemonSelect";
 import { Info } from "lucide-react";
 import CalculatorResult from "./CalculatorResult";
@@ -15,12 +15,14 @@ const CalculatorForm: React.FC = () => {
   const [level, setLevel] = useState<number>(40);
   const [calculatedCP, setCalculatedCP] = useState<number | null>(null);
   const [ivPercentage, setIvPercentage] = useState<number | null>(null);
+  const [purifiedResult, setPurifiedResult] = useState<PurifiedStatsResult | null>(null);
+  const [normalForm, setNormalForm] = useState<Pokemon | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isCalculating, setIsCalculating] = useState<boolean>(false);
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate input
     if (!selectedPokemon) {
       setError("Please select a Pokémon");
@@ -30,7 +32,7 @@ const CalculatorForm: React.FC = () => {
     try {
       setIsCalculating(true);
       setError(null);
-      
+
       // Simulate a calculation delay for visual feedback
       setTimeout(() => {
         const cp = calculateCP({
@@ -42,11 +44,31 @@ const CalculatorForm: React.FC = () => {
           staminaIV,
           level
         });
-        
+
         const ivPercentage = calculateIVPercentage(attackIV, defenseIV, staminaIV);
-        
+
+        // If this is a Shadow Pokémon, also compute its purified (post-Purify) CP
+        let purified: PurifiedStatsResult | null = null;
+        let normal: Pokemon | null = null;
+        if (selectedPokemon.isShadow) {
+          normal = getNormalFormForShadow(selectedPokemon) ?? null;
+          if (normal) {
+            purified = calculatePurifiedStats({
+              normalBaseAttack: normal.baseAttack,
+              normalBaseDefense: normal.baseDefense,
+              normalBaseStamina: normal.baseStamina,
+              shadowAttackIV: attackIV,
+              shadowDefenseIV: defenseIV,
+              shadowStaminaIV: staminaIV,
+              level
+            });
+          }
+        }
+
         setCalculatedCP(cp);
         setIvPercentage(ivPercentage);
+        setPurifiedResult(purified);
+        setNormalForm(normal);
         setIsCalculating(false);
       }, 500);
     } catch (err) {
@@ -63,6 +85,8 @@ const CalculatorForm: React.FC = () => {
     setLevel(40);
     setCalculatedCP(null);
     setIvPercentage(null);
+    setPurifiedResult(null);
+    setNormalForm(null);
     setError(null);
   };
 
@@ -258,6 +282,8 @@ const CalculatorForm: React.FC = () => {
           attackIV={attackIV}
           defenseIV={defenseIV}
           staminaIV={staminaIV}
+          purified={purifiedResult}
+          normalForm={normalForm}
         />
       )}
 

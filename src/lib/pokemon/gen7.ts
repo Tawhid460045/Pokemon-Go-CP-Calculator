@@ -764,7 +764,7 @@ export const gen7Pokemon: Pokemon[] = [
     name: "Blacephalon",
     baseAttack: 315,
     baseDefense: 148,
-    baseStamina: 137,
+    baseStamina: 142,
     types: ["Fire", "Ghost"],
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/806.png",
   },

@@ -162,3 +162,56 @@ export function calculateIVPercentage(attackIV: number, defenseIV: number, stami
   const maxIV = 45; // 15 + 15 + 15
   return Math.round((totalIV / maxIV) * 100);
 }
+
+export interface PurifiedStatsParams {
+  normalBaseAttack: number;
+  normalBaseDefense: number;
+  normalBaseStamina: number;
+  shadowAttackIV: number;
+  shadowDefenseIV: number;
+  shadowStaminaIV: number;
+  level: number;
+}
+
+export interface PurifiedStatsResult {
+  attackIV: number;
+  defenseIV: number;
+  staminaIV: number;
+  ivPercentage: number;
+  cp: number;
+}
+
+// Purifying a Shadow Pokémon in Pokémon GO: each IV goes up by 2 (capped at
+// 15), and its base stats switch from the Shadow form's to the normal
+// form's. Level is unchanged. See calculateCP for the underlying CP formula.
+export function calculatePurifiedStats({
+  normalBaseAttack,
+  normalBaseDefense,
+  normalBaseStamina,
+  shadowAttackIV,
+  shadowDefenseIV,
+  shadowStaminaIV,
+  level
+}: PurifiedStatsParams): PurifiedStatsResult {
+  const attackIV = Math.min(15, shadowAttackIV + 2);
+  const defenseIV = Math.min(15, shadowDefenseIV + 2);
+  const staminaIV = Math.min(15, shadowStaminaIV + 2);
+
+  const cp = calculateCP({
+    baseAttack: normalBaseAttack,
+    baseDefense: normalBaseDefense,
+    baseStamina: normalBaseStamina,
+    attackIV,
+    defenseIV,
+    staminaIV,
+    level
+  });
+
+  return {
+    attackIV,
+    defenseIV,
+    staminaIV,
+    ivPercentage: calculateIVPercentage(attackIV, defenseIV, staminaIV),
+    cp
+  };
+}
