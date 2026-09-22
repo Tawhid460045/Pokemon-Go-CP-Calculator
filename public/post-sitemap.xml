@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://pokemongocpcalculator.com/tips-for-optimal-pokemon-evolution</loc>
+    <lastmod>2025-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pokemongocpcalculator.com/assets/pokemon-evolution-guide.jpg</image:loc>
+      <image:caption>Pokemon Evolution Guide - Optimal strategies for Pokemon GO trainers</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pokemongocpcalculator.com/understanding-shadow-pokemon-mechanics</loc>
+    <lastmod>2025-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://pokemongocpcalculator.com/assets/shadow-pokemon-mechanics.jpg</image:loc>
+      <image:caption>Shadow Pokemon Mechanics - Understanding corruption and purification in Pokemon GO</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pokemongocpcalculator.com/best-pokemon-to-purify</loc>
+    <lastmod>2025-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pokemongocpcalculator.com/assets/best-pokemon-purify.jpg</image:loc>
+      <image:caption>Best Pokemon to Purify - Shadow vs Purified comparison guide</image:caption>
+    </image:image>
+  </url>
+</urlset>

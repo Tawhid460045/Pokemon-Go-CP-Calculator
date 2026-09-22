@@ -1,0 +1,31 @@
+# robots.txt for pokemongocpcalculator.com
+User-agent: *
+Allow: /
+
+# Explicitly allow common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://pokemongocpcalculator.com/sitemap.xml
+Sitemap: https://pokemongocpcalculator.com/sitemap_index.xml
+Sitemap: https://pokemongocpcalculator.com/page-sitemap.xml
+Sitemap: https://pokemongocpcalculator.com/post-sitemap.xml
