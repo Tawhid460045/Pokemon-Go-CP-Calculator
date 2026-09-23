@@ -11,23 +11,24 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Calculate your Pokemon's CP instantly, check its IV quality, and see exactly what it becomes after purifying a Shadow Pokemon. Free, accurate, and built on the official in-game CP formula.",
   path: "/",
-  keywords: "Pokemon Go CP calculator, purify calculator, shadow Pokemon calculator, IV calculator, CP formula",
+  keywords: "Pokemon Go CP calculator, IV calculator, CP formula, Pokemon GO calculator",
 });
 
 const faqs = [
   {
-    question: "How accurate is the Pokemon Go CP calculator?",
+    question: "How accurate is this CP calculator?",
     answer:
-      "It uses the same CP formula the game itself uses (base stats, IVs, and the level's CP multiplier), so results match in-game CP exactly, aside from rare rounding edge cases.",
+      "It runs the same CP formula the game itself uses (base stats, IVs, and the level's CP multiplier), so results match in-game CP exactly, aside from rare rounding edge cases.",
   },
   {
-    question: "Can I calculate CP for shadow and purified Pokemon?",
+    question: "Can I compare CP before and after evolution?",
     answer:
-      "Yes. Selecting a Shadow Pokemon shows a side-by-side comparison of its current CP and its CP after purification, based on the real purify mechanic: each IV increases by 2 (capped at 15) and its level stays the same.",
+      "Yes - select the evolved form directly from the dropdown to compare its CP against an earlier stage at the same level and IVs.",
   },
   {
-    question: "Is the calculator's Pokemon database kept current?",
-    answer: "Yes, the database is reviewed and updated as new Pokemon, forms, and Shadow releases are added to Pokemon GO.",
+    question: "Where's the Shadow Pokemon / purify calculator?",
+    answer:
+      "Right here too - select a Shadow Pokemon above and you'll see its purified CP alongside its current CP. For a dedicated view with more detail, use the Purify Calculator page.",
   },
 ];
 
@@ -65,134 +66,124 @@ export default function HomePage() {
 
         <Separator className="my-8 md:my-12" />
 
-        <article className="prose dark:prose-invert prose-img:rounded-xl prose-headings:scroll-m-20 prose-headings:font-semibold prose-sm md:prose-base lg:prose-lg max-w-none px-1">
-          <h2 className="text-3xl tracking-tight scroll-m-20 pb-2 mt-10 first:mt-0 border-b border-border">
-            Understanding CP in Pokémon GO
-          </h2>
+        <article className="prose dark:prose-invert prose-headings:scroll-m-20 prose-headings:font-semibold prose-sm md:prose-base lg:prose-lg max-w-none px-1">
+          <section>
+            <h2 className="text-3xl tracking-tight scroll-m-20 pb-2 mt-10 first:mt-0 border-b border-border">
+              What Is CP in Pokémon GO?
+            </h2>
+            <figure className="not-prose my-6">
+              <img
+                src="/images/content/cp-calculator-result-example.png"
+                alt="Real Pokemon Go CP Calculator result for a level 40 Garchomp with 93% IVs, showing 3928 CP"
+                className="w-full max-w-xl mx-auto rounded-xl border border-border shadow-sm"
+              />
+              <figcaption className="text-xs text-muted-foreground text-center mt-2">
+                An actual result from this calculator: a level 40 Garchomp at 93% IVs.
+              </figcaption>
+            </figure>
+            <p>
+              Combat Power (CP) is the number that sums up how strong a Pokémon is in battle. It comes from three
+              inputs: the species' base stats (fixed per species), its Individual Values or IVs (a hidden bonus of
+              0-15 per stat, randomized on capture), and its level. This calculator runs the exact formula the game
+              uses, so the number you see here is the number you'll see in-game.
+            </p>
+            <p>
+              Every result also comes with an IV quality rating - Average, Good, Great, Excellent, or Perfect - based
+              on the combined percentage of your three IVs out of a possible 45. A Perfect (100%) Pokémon has 15/15/15;
+              most trainers target 80%+ for a species they plan to invest in long-term.
+            </p>
+          </section>
 
-          <p>
-            Combat Power (CP) is the number that sums up how strong a Pokémon is in battle. It's derived from three
-            things: the species' base stats, its Individual Values (IVs), and its level. This calculator uses the same
-            formula the game itself runs, so the number you see here is the number you'll see in-game.
-          </p>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">What is CP in Pokémon GO?</h3>
-
-          <p>
-            CP (Combat Power) is derived from a combination of a Pokémon's base stats, its IVs (Attack, Defense, and
-            Stamina, each 0-15), and its current level. Enter those values above and you'll get an exact CP, plus an IV
-            quality rating so you can see at a glance whether a catch is worth investing in.
-          </p>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Shadow Pokémon and Purification</h3>
-
-          <p>
-            Shadow Pokémon, caught from Team GO Rocket grunts, leaders, and Shadow raids, deal about 20% more damage in
-            battle but also take about 20% more damage. Select any Shadow Pokémon above (there's a "Shadow Pokémon
-            only" filter in the dropdown to make them easy to find) and, alongside its current CP, you'll see exactly
-            what it becomes after purification:
-          </p>
-
-          <ul>
-            <li>Each of its three IVs (Attack, Defense, Stamina) increases by 2, up to a maximum of 15</li>
-            <li>Its level stays exactly the same</li>
-            <li>Its resulting CP is recalculated from those higher IVs</li>
-            <li>Powering up and evolving it afterward costs less Stardust and Candy</li>
-            <li>It gains access to the Purified-exclusive Charged Move, Return</li>
-          </ul>
-
-          <p>
-            For the full mechanic, cost breakdown, and which Shadows are worth purifying, see our{" "}
-            <Link href="/purify-calculator" className="text-primary hover:underline">
-              dedicated purify calculator
-            </Link>{" "}
-            and our{" "}
-            <Link href="/understanding-shadow-pokemon-mechanics" className="text-primary hover:underline">
-              Shadow Pokémon mechanics guide
-            </Link>
-            .
-          </p>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Understanding the CP-to-Level Relationship</h3>
-
-          <p>
-            CP doesn't scale linearly with level — it increases more per level at higher levels than at lower ones.
-            Four things determine a Pokémon's CP at any given point:
-          </p>
-
-          <ul>
-            <li>Base stats of the Pokémon species</li>
-            <li>Individual Values (IVs) for Attack, Defense, and Stamina</li>
-            <li>The Pokémon's current level</li>
-            <li>The CP multiplier (CPM), which increases with level</li>
-          </ul>
-
-          <p>
-            That makes this calculator useful for working backward too: if you know the CP you need to hit (or stay
-            under) for a PvP league cap, you can try different levels and IV combinations until you land on it.
-          </p>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Comparing CP Across Evolutions</h3>
-
-          <p>
-            Wondering what a Pokémon's CP will look like after evolving? Select the evolved form directly from the
-            dropdown search — since it uses the same official base stats and CP formula, you can compare a Charmander's
-            CP against a Charmeleon's or Charizard's at the same level and IVs to see exactly how much of a jump
-            evolving gives you.
-          </p>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Optimizing Shadow vs. Purified Pokémon</h3>
-
-          <p>The decision to purify a Shadow Pokémon isn't always straightforward. There are real tradeoffs on both sides:</p>
-
-          <h4 className="text-xl tracking-tight scroll-m-20 mt-6">Benefits of keeping it Shadow:</h4>
-          <ul>
-            <li>The ~20% Attack bonus makes Shadows hit harder in raids and gyms</li>
-            <li>Access to Frustration, which can be useful in specific niche cases</li>
-          </ul>
-
-          <h4 className="text-xl tracking-tight scroll-m-20 mt-6">Benefits of purifying:</h4>
-          <ul>
-            <li>Higher guaranteed IVs (and therefore often higher CP)</li>
-            <li>Access to the Purified-exclusive move, Return</li>
-            <li>Reduced Stardust and Candy costs for powering up</li>
-            <li>Removes the ~20% Defense penalty, making it tankier</li>
-          </ul>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Advanced CP Tips for PvP</h3>
-
-          <ol>
-            <li>
-              <strong>PvP optimization</strong>: for CP-capped leagues, a slightly lower Attack IV paired with higher
-              Defense and Stamina IVs often outperforms a "perfect" 15/15/15 spread, since it lets the Pokémon reach the
-              cap at a higher level.
-            </li>
-            <li>
-              <strong>Breakpoints</strong>: certain CP/level thresholds let a Pokémon's fast move deal one more point of
-              damage per hit — worth checking before you lock in a power-up plan.
-            </li>
-            <li>
-              <strong>Level 50 planning</strong>: use the level slider up to 51 to see the ceiling on CP from XL Candy
-              investment before committing resources.
-            </li>
-          </ol>
-
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">Frequently Asked Questions</h3>
-
-          {faqs.map((faq) => (
-            <div key={faq.question}>
-              <h4 className="text-xl tracking-tight scroll-m-20 mt-6">{faq.question}</h4>
-              <p>{faq.answer}</p>
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">The CP Formula</h2>
+            <div className="not-prose rounded-xl border border-border bg-secondary/30 p-4 md:p-6 font-mono text-sm md:text-base overflow-x-auto">
+              <div>Attack = (Base Attack + Attack IV) × CPM</div>
+              <div>Defense = (Base Defense + Defense IV) × CPM</div>
+              <div>Stamina = (Base Stamina + Stamina IV) × CPM</div>
+              <div className="mt-2">CP = max( 10, floor( √Stamina × Attack × √Defense / 10 ) )</div>
+              <div className="mt-1 text-muted-foreground text-xs md:text-sm">CPM = the CP Multiplier for the selected level</div>
             </div>
-          ))}
+            <p>
+              Enter IVs (0-15 per stat) and a level above and the calculator applies this formula directly - no
+              estimates. The CPM ranges from 0.094 at level 1 up to 0.829 at level 51 (Best Buddy), and Niantic
+              publishes a fixed value for every half-level in between.
+            </p>
+          </section>
 
-          <h3 className="text-2xl tracking-tight scroll-m-20 mt-8">A note on accuracy</h3>
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">CP and Level Aren't Linear</h2>
+            <p>
+              CP increases more per level at higher levels than at lower ones, because the CP Multiplier (CPM) itself
+              grows non-linearly - it's a curve Niantic defined per level, not a fixed step. Two levels apart near the
+              bottom of the curve (say, level 2 to 4) add far less CP than two levels apart near the top (level 48 to
+              50), even though the IVs and base stats stay identical.
+            </p>
+            <p>
+              That makes the calculator useful for working backward too: if you need to stay under a PvP league's CP
+              cap, try different levels and IV combinations until you land under it, rather than powering up blind and
+              hoping.
+            </p>
+          </section>
 
-          <p>
-            CP is one input into team strategy, not the whole story — type matchups, movesets, and battle timing matter
-            just as much. This calculator aims to get the number right every time; how you use that number is up to
-            you.
-          </p>
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">Comparing CP Across Evolutions</h2>
+            <p>
+              Search for and select an evolved form directly from the dropdown - since it uses the same base-stat data
+              and formula, you can compare a Charmander's CP against a Charmeleon's or Charizard's at matching level
+              and IVs to see exactly how much of a jump evolving gives you. For example, a 15/15/15 Charmander at level
+              20 has 560 CP, while the same IVs on a fully evolved Charizard at level 20 reach 1,651 CP - the base stat
+              increase from evolving dwarfs anything IVs alone can add.
+            </p>
+            <p>
+              There isn't yet a one-click "project this Pokémon's CP after evolving" button - that would need a full
+              evolution-chain dataset mapping every species to what it evolves into, which is a separate project we're
+              still building. Selecting the evolved form manually takes seconds and uses the exact same verified data.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">Have a Shadow Pokémon?</h2>
+            <p>
+              Select one above and you'll see its current CP next to its Purified CP automatically - there's also a
+              "Shadow Pokémon only" filter in the dropdown to make them easier to find among the full list. Shadow
+              Pokémon deal about 20% more damage but also take about 20% more damage; purifying removes that trade-off
+              and adds +2 to every IV instead. For the full mechanic, cost breakdown, and a dedicated Shadow-only view,
+              use the <Link href="/purify-calculator" className="text-primary hover:underline">Purify Calculator</Link>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">Tips for PvP</h2>
+            <ul>
+              <li><strong>Great League:</strong> 1500 CP cap. <strong>Ultra League:</strong> 2500 CP cap. <strong>Master League:</strong> no cap.</li>
+              <li>A slightly lower Attack IV paired with higher Defense/Stamina often outperforms a "perfect" 15/15/15 spread under a CP cap, since it lets the Pokémon reach the cap at a higher level with more bulk.</li>
+              <li>Certain CP/level thresholds ("breakpoints") let a Pokémon's fast move deal one extra point of damage per hit - worth checking before locking in a power-up plan.</li>
+              <li>Use the level slider (up to 51) to see the CP ceiling before investing XL Candy, which is required for levels above 40.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl tracking-tight scroll-m-20 mt-10">Why Use This Calculator</h2>
+            <p>
+              This tool runs the official Pokémon GO CP formula directly - no estimates, no lookup tables. The Pokémon
+              database is reviewed and updated as new species, forms, and Shadow releases are added to the game, and
+              every base stat is checked against Bulbapedia's Pokémon GO stats reference. See the{" "}
+              <Link href="/updates" className="text-primary hover:underline">Updates page</Link> for the full
+              changelog of what's been verified and when.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-3xl tracking-tight scroll-m-20 pb-2 mt-10 border-b border-border">
+              Frequently Asked Questions
+            </h2>
+            {faqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="text-xl tracking-tight scroll-m-20 mt-6">{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </div>
+            ))}
+          </section>
         </article>
       </div>
 
