@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import Providers from "./providers";
+import AdSlot from "@/components/AdSlot";
 import { siteUrl, siteName } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -53,6 +54,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Providers>{children}</Providers>
+
+        {/*
+          Desktop sidebar ad slots. Every page's content sits in a centered,
+          narrow column, which leaves the gutters on wide screens empty -
+          these fill that space without touching the content column itself.
+          Only shown at 2xl+ (1536px) so there's no risk of overlapping
+          content on laptop-sized screens.
+        */}
+        <div className="hidden 2xl:block fixed left-2 top-28 z-10">
+          <AdSlot id="ad-slot-sidebar-left" width={160} height={600} />
+        </div>
+        <div className="hidden 2xl:block fixed right-2 top-28 z-10">
+          <AdSlot id="ad-slot-sidebar-right" width={160} height={600} />
+        </div>
 
         {/* Ahrefs Web Analytics */}
         <Script src="https://analytics.ahrefs.com/analytics.js" data-key="O5TLbx211Z77leQ9Dp6yCA" strategy="afterInteractive" />

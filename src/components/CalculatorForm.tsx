@@ -290,7 +290,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ defaultShadowOnly = fal
 
       {calculatedCP !== null && (
         <>
-          <AdSlot id="ad-slot-cp-result" className="my-6 md:my-8" />
+          <AdSlot id="ad-slot-cp-result" className="my-4" />
           <CalculatorResult
             cp={calculatedCP}
             ivPercentage={ivPercentage || 0}

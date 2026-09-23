@@ -4,26 +4,26 @@ import { cn } from "@/lib/utils";
 interface AdSlotProps {
   id: string;
   className?: string;
-  minHeight?: number;
+  width?: number;
+  height?: number;
 }
 
 /**
- * Reserved space for an ad placement between content blocks. Deliberately a
- * plain, stable container (not tied to any ad network's SDK) so it reserves
- * layout space and doesn't shift content once an ad script populates it -
- * whatever network/placement mechanism ends up targeting this id.
+ * A plain, unstyled anchor point for ad injection - no border, label, or
+ * forced reserved height. Mediavine's script scans the page and inserts its
+ * own ad element (sized to whatever it serves) wherever it finds a suitable
+ * break, the same way it does between paragraphs on a WordPress post; this
+ * just gives it a natural gap/DOM hook to find, rather than one continuous
+ * block of UI with nowhere to insert into.
  */
-const AdSlot: React.FC<AdSlotProps> = ({ id, className, minHeight = 250 }) => {
+const AdSlot: React.FC<AdSlotProps> = ({ id, className, width, height }) => {
   return (
-    <div className={cn("w-full flex flex-col items-center", className)}>
-      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 mb-1.5">Advertisement</span>
-      <div
-        id={id}
-        data-ad-slot={id}
-        className="w-full max-w-[336px] flex items-center justify-center rounded-lg border border-dashed border-border/60 bg-secondary/20"
-        style={{ minHeight }}
-      />
-    </div>
+    <div
+      id={id}
+      data-ad-slot={id}
+      className={cn("w-full", className)}
+      style={width || height ? { width, height, maxWidth: "100%" } : undefined}
+    />
   );
 };
 

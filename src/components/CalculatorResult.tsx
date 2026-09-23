@@ -6,6 +6,7 @@ import { PurifiedStatsResult } from "@/lib/cpCalculator";
 import { ArrowUpCircle, ArrowRight, Sparkles, Star, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import AdSlot from "./AdSlot";
 
 interface CalculatorResultProps {
   cp: number;
@@ -146,7 +147,9 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
     </div>
 
       {pokemon.isShadow && (
-        <div className="mt-4 rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
+        <>
+        <AdSlot id="ad-slot-purify-result" className="my-4" />
+        <div className="rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
           <div className="bg-purple-500/10 px-6 py-4 flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-purple-500" />
             <h3 className="font-semibold">After Purification</h3>
@@ -200,6 +203,7 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
             </div>
           )}
         </div>
+        </>
       )}
     </>
   );
