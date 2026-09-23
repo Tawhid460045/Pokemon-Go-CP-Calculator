@@ -45,13 +45,7 @@ export default function UpdatesPage() {
                   <li>Fixed 30 species that were listed twice with conflicting base stats (Carbink, Volcanion, Salandit, Stakataka, Blacephalon, Rookidee, Gossifleur, Eldegoss, Yamper, Boltund, Applin, Flapple, Appletun, Snom, Frosmoth, Quaxly, Quaxwell, Quaquaval, Pawmi, Toedscool, Toedscruel, Tinkatink, Tinkatuff, Tinkaton, Wiglett, Kingambit, Frigibax, Gimmighoul, Walking Wake, Iron Leaves) - each now has one verified entry</li>
                   <li>Replaced Mega Metagross's placeholder stats with verified official values</li>
                   <li>Expanded the Shadow Pokemon roster from 12 to 94 species, matching current Team GO Rocket encounters and Shadow raids</li>
-                </ul>
-
-                <h3>Technical/SEO</h3>
-                <ul>
-                  <li>Rebuilt on Next.js with static export so every page's title, description, and content are in the raw HTML - no longer dependent on JavaScript running for search engines and other crawlers to see real content</li>
-                  <li>Rewrote homepage title/description and removed date-stamped copy ("Updated September 2025") that read as stale in search results</li>
-                  <li>Removed a fabricated review rating from the site's structured data</li>
+              
                 </ul>
               </div>
 
