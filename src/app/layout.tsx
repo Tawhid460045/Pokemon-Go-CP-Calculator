@@ -80,10 +80,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-cfasync="false"
         />
 
-        {/* Mediavine Grow.me */}
-        <Script id="grow-me-init" strategy="afterInteractive">
-          {`!(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTplMTE2NmNkOC0zYjMyLTRlZjctOTJkOS1jMDJhMTNjMmUzYzE=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();`}
-        </Script>
+        {/*
+          Mediavine Grow.me. This must be a plain inline <script> baked into
+          the static HTML (not Next's <Script> component, which only injects
+          it client-side after hydration) with the data-grow-initializer
+          attribute intact - Mediavine's setup checker scans the raw page
+          source for that exact marker, and afterInteractive-loaded scripts
+          never appear there.
+        */}
+        <script
+          data-grow-initializer=""
+          dangerouslySetInnerHTML={{
+            __html: `!(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTplMTE2NmNkOC0zYjMyLTRlZjctOTJkOS1jMDJhMTNjMmUzYzE=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();`,
+          }}
+        />
 
         {/* Google Analytics (GA4) */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-KG3NFYS6T6" strategy="afterInteractive" />
