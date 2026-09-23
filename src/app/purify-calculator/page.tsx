@@ -73,11 +73,9 @@ export default function PurifyCalculatorPage() {
 
         <div className="relative mb-10">
           <div className="absolute inset-0 bg-purple-500/5 rounded-3xl blur-3xl transform -rotate-3 scale-105 opacity-50"></div>
-          <div className="relative bg-white dark:bg-card border border-border rounded-xl md:rounded-2xl p-4 md:p-8 shadow-sm">
-            <Suspense fallback={<CalculatorSkeleton />}>
-              <CalculatorForm defaultShadowOnly />
-            </Suspense>
-          </div>
+          <Suspense fallback={<CalculatorSkeleton />}>
+            <CalculatorForm defaultShadowOnly />
+          </Suspense>
         </div>
 
         <div className="mb-10 text-center">
@@ -247,18 +245,20 @@ export default function PurifyCalculatorPage() {
 }
 
 const CalculatorSkeleton = () => (
-  <div className="space-y-4 md:space-y-6 animate-pulse">
-    <div className="w-full h-12 bg-secondary rounded-lg" />
-    <div className="w-full h-32 bg-secondary rounded-lg" />
-    <div className="grid grid-cols-3 gap-3">
-      <div className="h-10 bg-secondary rounded-md" />
-      <div className="h-10 bg-secondary rounded-md" />
-      <div className="h-10 bg-secondary rounded-md" />
-    </div>
-    <div className="w-full h-10 bg-secondary rounded-lg" />
-    <div className="flex gap-3">
-      <div className="flex-1 h-12 bg-secondary rounded-lg" />
-      <div className="w-20 h-12 bg-secondary rounded-lg" />
+  <div className="w-full max-w-lg mx-auto relative bg-white dark:bg-card border border-border rounded-xl md:rounded-2xl p-4 md:p-8 shadow-sm">
+    <div className="space-y-4 md:space-y-6 animate-pulse">
+      <div className="w-full h-12 bg-secondary rounded-lg" />
+      <div className="w-full h-32 bg-secondary rounded-lg" />
+      <div className="grid grid-cols-3 gap-3">
+        <div className="h-10 bg-secondary rounded-md" />
+        <div className="h-10 bg-secondary rounded-md" />
+        <div className="h-10 bg-secondary rounded-md" />
+      </div>
+      <div className="w-full h-10 bg-secondary rounded-lg" />
+      <div className="flex gap-3">
+        <div className="flex-1 h-12 bg-secondary rounded-lg" />
+        <div className="w-20 h-12 bg-secondary rounded-lg" />
+      </div>
     </div>
   </div>
 );

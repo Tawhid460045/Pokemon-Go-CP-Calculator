@@ -43,7 +43,7 @@ const CalculatorResult: React.FC<CalculatorResultProps> = ({
 
   return (
     <>
-    <div className="mt-8 rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
+    <div className="rounded-xl overflow-hidden glass-morphism dark:glass-morphism-dark animate-slide-up">
       <div className="bg-primary/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img

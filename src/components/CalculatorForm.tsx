@@ -6,6 +6,7 @@ import { calculateCP, calculateIVPercentage, calculatePurifiedStats, PurifiedSta
 import PokemonSelect from "./PokemonSelect";
 import { Info } from "lucide-react";
 import CalculatorResult from "./CalculatorResult";
+import AdSlot from "./AdSlot";
 import { cn } from "@/lib/utils";
 
 interface CalculatorFormProps {
@@ -109,6 +110,7 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ defaultShadowOnly = fal
 
   return (
     <div className="w-full max-w-lg mx-auto">
+      <div className="relative bg-white dark:bg-card border border-border rounded-xl md:rounded-2xl p-4 md:p-8 shadow-sm">
       <form onSubmit={handleCalculate} className="space-y-6">
         <div className="space-y-2">
           <div className="flex items-center">
@@ -279,25 +281,29 @@ const CalculatorForm: React.FC<CalculatorFormProps> = ({ defaultShadowOnly = fal
         </div>
       </form>
 
-      {calculatedCP !== null && (
-        <CalculatorResult
-          cp={calculatedCP}
-          ivPercentage={ivPercentage || 0}
-          pokemon={selectedPokemon!}
-          level={level}
-          attackIV={attackIV}
-          defenseIV={defenseIV}
-          staminaIV={staminaIV}
-          purified={purifiedResult}
-          normalForm={normalForm}
-        />
-      )}
-
       <div className="mt-6 text-center text-xs text-muted-foreground">
         <p>
           Base stats sourced from <a href="https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_in_Pok%C3%A9mon_GO" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80 transition-colors">Bulbapedia</a>.
         </p>
       </div>
+      </div>
+
+      {calculatedCP !== null && (
+        <>
+          <AdSlot id="ad-slot-cp-result" className="my-6 md:my-8" />
+          <CalculatorResult
+            cp={calculatedCP}
+            ivPercentage={ivPercentage || 0}
+            pokemon={selectedPokemon!}
+            level={level}
+            attackIV={attackIV}
+            defenseIV={defenseIV}
+            staminaIV={staminaIV}
+            purified={purifiedResult}
+            normalForm={normalForm}
+          />
+        </>
+      )}
     </div>
   );
 };
